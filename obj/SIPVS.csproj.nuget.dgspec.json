@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/maros.lukac/SIPVS/SIPVS.csproj": {}
+  },
+  "projects": {
+    "/Users/maros.lukac/SIPVS/SIPVS.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/maros.lukac/SIPVS/SIPVS.csproj",
+        "projectName": "SIPVS",
+        "projectPath": "/Users/maros.lukac/SIPVS/SIPVS.csproj",
+        "packagesPath": "/Users/maros.lukac/.nuget/packages/",
+        "outputPath": "/Users/maros.lukac/SIPVS/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/maros.lukac/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "System.Xml.Linq": {
+              "target": "Package",
+              "version": "[3.5.21022.801, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

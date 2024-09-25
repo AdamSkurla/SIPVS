@@ -1,0 +1,27 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SIPVS
+build_property.RootNamespace = SIPVS
+build_property.ProjectDir = /Users/maros.lukac/SIPVS/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/maros.lukac/SIPVS
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/maros.lukac/SIPVS/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maros.lukac/SIPVS/Views/XML/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvWE1ML0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
