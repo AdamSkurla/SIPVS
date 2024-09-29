@@ -1,10 +1,8 @@
-
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using System.Xml.Xsl;
 
 namespace SIPVS.Controllers
 {
@@ -12,87 +10,153 @@ namespace SIPVS.Controllers
     {
         public IActionResult Index()
         {
-            // Add a message that will be passed to the view
-            ViewBag.Message = "Welcome to the XML to PDF Converter Web App!";
             return View();
         }
 
+        // Generovanie XML
         [HttpPost]
-        public IActionResult GenerateXml(string surname, string name, string birthNumber, 
-                                         string street, string postalCode, string city, 
-                                         string childSurname, string childName, string childBirthDate, 
-                                         string schoolName, string schoolAddress, string schoolYear,
-                                         string grade, string enrollmentDate, string academicYearStart,
-                                         string schoolWorkerName, string signatureDate, string signature)
+        public IActionResult GenerateXml(string zamestnavatel, string priezviskoMenoTitul, string bydlisko, 
+                                        string osobneCislo, string utvar, string telefon, string pracovnyCas, 
+                                        string odTime, string doTime, // Pridanie parametrov pre 'Od' a 'Do'
+                                        string[] zaciatokCesty, string[] mestoRokovania, string[] ucelCesty, string[] koniecCesty,
+                                        string spolucestujuci, string dopravnyProstriedok, string ciastkaVydavkov, string preddavok,
+                                        string podpisPokladnika, string datumPodpisPokladnika)
         {
-            // Build XML document based on the form data
+            // Definovanie namespace
+            XNamespace ns = "http://travelorder.example.com/sipvs";
+
+            // Zabezpečenie formátu času HH:MM:SS
+            if (!string.IsNullOrEmpty(odTime) && odTime.Length == 5) // Ak je čas vo formáte HH:MM
+            {
+                odTime += ":00"; // Pridáme sekundy
+            }
+
+            if (!string.IsNullOrEmpty(doTime) && doTime.Length == 5) // Ak je čas vo formáte HH:MM
+            {
+                doTime += ":00"; // Pridáme sekundy
+            }
+
+            // Vytvorenie XML dokumentu s opakujúcimi sa sekciami Cesta a pridaním namespace
             XDocument xmlDocument = new XDocument(
-                new XElement("Form",
-                    new XElement("Applicant",
-                        new XElement("Surname", surname),
-                        new XElement("Name", name),
-                        new XElement("BirthNumber", birthNumber),
-                        new XElement("Address", 
-                            new XElement("Street", street),
-                            new XElement("PostalCode", postalCode),
-                            new XElement("City", city)
+                new XElement(ns + "CestovnyPrikaz",
+                    new XElement(ns + "Zamestnavatel", zamestnavatel),
+                    new XElement(ns + "PriezviskoMenoTitul", priezviskoMenoTitul),
+                    new XElement(ns + "Bydlisko", bydlisko),
+                    new XElement(ns + "OsobneCislo", osobneCislo),
+                    new XElement(ns + "Utvar", utvar),
+                    new XElement(ns + "Telefon", telefon),
+                    new XElement(ns + "PracovnyCas", pracovnyCas),
+                    new XElement(ns + "Od", odTime), 
+                    new XElement(ns + "Do", doTime), 
+                    new XElement(ns + "Cesty", 
+                        from i in Enumerable.Range(0, zaciatokCesty.Length)
+                        select new XElement(ns + "Cesta",
+                            new XElement(ns + "ZaciatokCesty", zaciatokCesty[i]),
+                            new XElement(ns + "MestoRokovania", mestoRokovania[i]),
+                            new XElement(ns + "UcelCesty", ucelCesty[i]),
+                            new XElement(ns + "KoniecCesty", koniecCesty[i])
                         )
                     ),
-                    new XElement("Child",
-                        new XElement("Surname", childSurname),
-                        new XElement("Name", childName),
-                        new XElement("BirthDate", childBirthDate)
-                    ),
-                    new XElement("SchoolInfo",
-                        new XElement("SchoolName", schoolName),
-                        new XElement("SchoolAddress", schoolAddress),
-                        new XElement("SchoolYear", schoolYear),
-                        new XElement("Grade", grade),
-                        new XElement("EnrollmentDate", enrollmentDate),
-                        new XElement("AcademicYearStart", academicYearStart),
-                        new XElement("SchoolWorkerName", schoolWorkerName),
-                        new XElement("SignatureDate", signatureDate),
-                        new XElement("Signature", signature)
-                    )
+                    new XElement(ns + "Spolucestujuci", spolucestujuci),
+                    new XElement(ns + "DopravnyProstriedok", dopravnyProstriedok),
+                    new XElement(ns + "CiastkaVydavkov", ciastkaVydavkov),
+                    new XElement(ns + "Preddavok", preddavok),
+                    new XElement(ns + "PodpisPokladnika", podpisPokladnika),
+                    new XElement(ns + "DatumPodpisPokladnika", datumPodpisPokladnika)
                 )
             );
 
-            // Validate the XML against the XSD
-            string xsdPath = Path.Combine(Directory.GetCurrentDirectory(), "Schema", "form.xsd");
-            string validationResult = ValidateXml(xmlDocument, xsdPath);
+            // Uloženie XML do wwwroot
+            string xmlPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cestovnyprikaz.xml");
+            try
+            {
+                xmlDocument.Save(xmlPath);
+            }
+            catch (Exception ex)
+            {
+                return Content("Chyba pri ukladaní XML: " + ex.Message);
+            }
 
-            // If valid, transform XML using XSLT (optional next step)
+            return Content("XML bolo úspešne uložené do " + xmlPath);
+        }
+
+        // Overenie XML voči XSD
+        [HttpPost]
+        public IActionResult ValidateXml()
+        {
+            string xmlPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cestovnyprikaz.xml");
+            string xsdPath = Path.Combine(Directory.GetCurrentDirectory(), "Schema", "travelorder.xsd");
+
+            // namespace
+            XmlSchemaSet schemas = new XmlSchemaSet();
+            schemas.Add("http://travelorder.example.com/sipvs", xsdPath);
+
+            XDocument xmlDocument;
+            try
+            {
+                xmlDocument = XDocument.Load(xmlPath);  // Načítanie XML súboru
+            }
+            catch (Exception ex)
+            {
+                return Content ("Chyba pri načítaní XML: " + ex.Message );
+            }
+
+            string validationResult = string.Empty;
+            try
+            {
+                // Spustenie validácie
+                xmlDocument.Validate(schemas, (sender, e) =>
+                {
+                    validationResult += e.Message + "\n";
+                });
+            }
+            catch (Exception ex)
+            {
+                return Content ("Chyba pri validácií XML: " + ex.Message );
+            }
+
             if (string.IsNullOrEmpty(validationResult))
             {
-                TempData["Xml"] = xmlDocument.ToString();
-                return RedirectToAction("DisplayXml");
+                return Content ("XML je platné!" );
             }
             else
             {
-                TempData["ValidationError"] = validationResult;
-                return RedirectToAction("Index");
+                return Content("XML obsahuje chyby: " + validationResult );
             }
         }
 
-        private string ValidateXml(XDocument xml, string xsdPath)
+        // Transformácia XML do HTML
+        [HttpPost]
+        public IActionResult TransformXmlToHtml()
         {
-            string validationErrors = string.Empty;
+            string xmlPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cestovnyprikaz.xml");
+            string xslPath = Path.Combine(Directory.GetCurrentDirectory(), "Schema", "travelorder.xsl");
 
-            XmlSchemaSet schemas = new XmlSchemaSet();
-            schemas.Add("", xsdPath);
-
-            xml.Validate(schemas, (sender, e) =>
+            XslCompiledTransform xslTransform = new XslCompiledTransform();
+            try
             {
-                validationErrors += e.Message + "\n";
-            });
+                xslTransform.Load(xslPath);
+            }
+            catch (Exception ex)
+            {
+                return Content("Chyba pri načítaní XSL súboru: " + ex.Message);
+            }
 
-            return validationErrors;
-        }
+            string htmlOutputPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cestovnyprikaz.html");
+            try
+            {
+                using (XmlReader reader = XmlReader.Create(xmlPath))
+                using (StreamWriter writer = new StreamWriter(htmlOutputPath))
+                {
+                    xslTransform.Transform(reader, null, writer);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("Chyba pri transformácii XML na HTML: " + ex.Message);
+            }
 
-        public IActionResult DisplayXml()
-        {
-            var xml = TempData["Xml"] as string;
-            return Content(xml, "text/xml");
+            return Content("XML bolo úspešne transformované do HTML a uložené do " + htmlOutputPath);
         }
     }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://travelorder.example.com/sipvs"
+           xmlns="http://travelorder.example.com/sipvs"
+           elementFormDefault="qualified">
+
+  <xs:element name="CestovnyPrikaz">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- Ostatné elementy -->
+        <xs:element name="Zamestnavatel" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="PriezviskoMenoTitul" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Bydlisko" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="OsobneCislo" type="xs:int" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Utvar" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Telefon" minOccurs="1" maxOccurs="1">
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:pattern value="\d{9}"/> 
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="PracovnyCas" type="xs:int" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Od" type="xs:time" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Do" type="xs:time" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Cesty -->
+        <xs:element name="Cesty" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cesta" maxOccurs="unbounded" minOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ZaciatokCesty" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="MestoRokovania" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="UcelCesty" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="KoniecCesty" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Spolucestujuci môže byť prázdny -->
+        <xs:element name="Spolucestujuci" type="xs:string" minOccurs="0" maxOccurs="1"/>
+
+        <!-- Dopravný prostriedok -->
+        <xs:element name="DopravnyProstriedok" type="xs:string" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Čiastka výdavkov -->
+        <xs:element name="CiastkaVydavkov" type="xs:int" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Preddavok -->
+        <xs:element name="Preddavok" type="xs:int" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Podpis pokladníka je povinný string -->
+        <xs:element name="PodpisPokladnika" type="xs:string" minOccurs="1" maxOccurs="1"/>
+
+        <!-- Povinný dátum podpisu pokladníka vo formáte YYYY-MM-DD -->
+        <xs:element name="DatumPodpisPokladnika" type="xs:date" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -4645,19 +4645,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/maros.lukac/.nuget/packages/": {}
+    "C:\\Users\\grejty\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/maros.lukac/SIPVS/SIPVS.csproj",
+      "projectUniqueName": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\SIPVS.csproj",
       "projectName": "SIPVS",
-      "projectPath": "/Users/maros.lukac/SIPVS/SIPVS.csproj",
-      "packagesPath": "/Users/maros.lukac/.nuget/packages/",
-      "outputPath": "/Users/maros.lukac/SIPVS/obj/",
+      "projectPath": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\SIPVS.csproj",
+      "packagesPath": "C:\\Users\\grejty\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/maros.lukac/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\grejty\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4714,7 +4714,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

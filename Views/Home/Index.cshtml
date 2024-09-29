@@ -1,128 +1,228 @@
 @{
-    ViewBag.Title = "Confirmation of Attendance";
+    ViewBag.Title = "Cestovný príkaz";
 }
 
-<h2>Potvrdenie o návšteve strednej alebo vysokej školy</h2>
-<p>na účely prídavku na dieťa</p>
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid black;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .info {
+            display: flex;
+            justify-content: space-between;
+        }
+        .info div {
+            width: 48%;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            margin: 10px 0;
+        }
+        .cesta-entry {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function addCesta() {
+            const cestaEntry = document.querySelector('.cesta-entry').cloneNode(true);
+            cestaEntry.querySelectorAll('input').forEach(input => input.value = '');
+            document.querySelector('#cesty').appendChild(cestaEntry);
+        }
 
-<form method="post" action="/Home/GenerateXml">
+        function autofillForm() {
+            document.querySelector('input[name="zamestnavatel"]').value = "ABC Company";
+            document.querySelector('input[name="priezviskoMenoTitul"]').value = "Ján Novák";
+            document.querySelector('input[name="bydlisko"]').value = "Bratislava";
+            document.querySelector('input[name="osobneCislo"]').value = "123456";
+            document.querySelector('input[name="utvar"]').value = "IT oddelenie";
+            document.querySelector('input[name="telefon"]').value = "904123456";
+            document.querySelector('input[name="spolucestujuci"]').value = "Peter Horváth";
+            document.querySelector('input[name="dopravnyProstriedok"]').value = "Automobil";
+            document.querySelector('input[name="ciastkaVydavkov"]').value = "200";
+            document.querySelector('input[name="preddavok"]').value = "100";
+            document.querySelector('input[name="podpisPokladnika"]').value = "Ján Novák";
+            document.querySelector('input[name="datumPodpisPokladnika"]').value = "2024-09-01";
+            document.querySelector('input[name="odTime"]').value = "08:00"; 
+            document.querySelector('input[name="doTime"]').value = "16:00"; // Predvyplnený čas "od"
 
-    <fieldset>
-        <legend>A. Údaje o oprávnenej osobe – žiadateľovi</legend>
-        <div>
-            <label for="surname">Priezvisko:</label>
-            <input type="text" id="surname" name="surname" required />
-        </div>
-        <div>
-            <label for="name">Meno:</label>
-            <input type="text" id="name" name="name" required />
-        </div>
-        <div>
-            <label for="birthNumber">Rodné číslo:</label>
-            <input type="text" id="birthNumber" name="birthNumber" required />
-        </div>
-        <div>
-            <input type="checkbox" id="permanentAddress" name="permanentAddress" />
-            <label for="permanentAddress">Adresa trvalého pobytu v SR</label>
-        </div>
-        <div>
-            <input type="checkbox" id="temporaryAddress" name="temporaryAddress" />
-            <label for="temporaryAddress">Adresa prechodného pobytu v SR</label>
-        </div>
-        <div>
-            <label for="street">Ulica:</label>
-            <input type="text" id="street" name="street" required />
-        </div>
-        <div>
-            <label for="postalCode">PSČ:</label>
-            <input type="text" id="postalCode" name="postalCode" required />
-        </div>
-        <div>
-            <label for="city">Obec:</label>
-            <input type="text" id="city" name="city" required />
-        </div>
-    </fieldset>
+            // Automatické vyplnenie sekcie Cesty
+            let cestaEntries = document.querySelectorAll('.cesta-entry');
+            cestaEntries[0].querySelector('input[name="zaciatokCesty"]').value = "Bratislava, 2024-09-01, 08:00";
+            cestaEntries[0].querySelector('input[name="mestoRokovania"]').value = "Praha";
+            cestaEntries[0].querySelector('input[name="ucelCesty"]').value = "Obchodné rokovanie";
+            cestaEntries[0].querySelector('input[name="koniecCesty"]').value = "Praha, 2024-09-02, 18:00";
 
-    <fieldset>
-        <legend>B. Údaje o dieťati</legend>
-        <div>
-            <label for="childSurname">Priezvisko:</label>
-            <input type="text" id="childSurname" name="childSurname" required />
-        </div>
-        <div>
-            <label for="childName">Meno:</label>
-            <input type="text" id="childName" name="childName" required />
-        </div>
-        <div>
-            <label for="childBirthDate">Dátum narodenia:</label>
-            <input type="date" id="childBirthDate" name="childBirthDate" required />
-        </div>
-    </fieldset>
+            // Ak chcete pridať ďalšie cesty automaticky
+            if (cestaEntries.length < 2) {
+                addCesta();
+                cestaEntries = document.querySelectorAll('.cesta-entry');
+                cestaEntries[1].querySelector('input[name="zaciatokCesty"]').value = "Košice, 2024-09-05, 10:00";
+                cestaEntries[1].querySelector('input[name="mestoRokovania"]').value = "Žilina";
+                cestaEntries[1].querySelector('input[name="ucelCesty"]').value = "Interné školenie";
+                cestaEntries[1].querySelector('input[name="koniecCesty"]').value = "Žilina, 2024-09-06, 17:00";
+            }
+    }
 
-    <fieldset>
-        <legend>C. Vyplní a potvrdí škola</legend>
-        <div>
-            <label for="schoolName">Názov školy:</label>
-            <input type="text" id="schoolName" name="schoolName" value="Fakulta informatiky a informačných technológií, STU v Bratislave" readonly />
-        </div>
-        <div>
-            <label for="schoolAddress">Sídlo školy:</label>
-            <input type="text" id="schoolAddress" name="schoolAddress" value="Ilkovičova 2, 842 16 Bratislava" readonly />
-        </div>
-        <div>
-            <label for="schoolYear">Školský rok:</label>
-            <input type="text" id="schoolYear" name="schoolYear" value="2024/2025" readonly />
-        </div>
-        <div>
-            <label for="grade">Ročník:</label>
-            <input type="text" id="grade" name="grade" />
-        </div>
-        <div>
-            <label>Prijatý na štúdium denné:</label>
-            <input type="checkbox" id="fullTimeYes" name="fullTimeYes" />
-            <label for="fullTimeYes">áno</label>
-            <input type="checkbox" id="fullTimeNo" name="fullTimeNo" />
-            <label for="fullTimeNo">nie</label>
-        </div>
-        <div>
-            <label for="studyLevel">Zapísaný na VŠ štúdium stupeň:</label>
-            <input type="checkbox" id="level1" name="level1" />
-            <label for="level1">I.</label>
-            <input type="checkbox" id="level2" name="level2" />
-            <label for="level2">II.</label>
-            <input type="checkbox" id="level3" name="level3" />
-            <label for="level3">I. a II. spojeného</label>
-        </div>
-        <div>
-            <label for="enrollmentDate">Dátum zápisu do ročníka:</label>
-            <input type="date" id="enrollmentDate" name="enrollmentDate" value="2024-09-01" />
-        </div>
-        <div>
-            <label for="academicYearStart">Začiatok akademického roka (uveďte dátum):</label>
-            <input type="date" id="academicYearStart" name="academicYearStart" value="2024-09-01" />
-        </div>
-        <div>
-            <label for="schoolWorkerName">Meno pracovníka školy, ktorý potvrdil:</label>
-            <input type="text" id="schoolWorkerName" name="schoolWorkerName" />
-        </div>
-        <div>
-            <label for="signatureDate">Dátum:</label>
-            <input type="date" id="signatureDate" name="signatureDate" />
-        </div>
-        <div>
-            <label for="signature">Podpis:</label>
-            <input type="text" id="signature" name="signature" />
-        </div>
-        <div>
-            <label for="schoolStamp">Pečiatka školy:</label>
-            <input type="text" id="schoolStamp" name="schoolStamp" />
-        </div>
-    </fieldset>
+    // Automatický výpočet času "do" na základe času "od" a pracovného času
+    function calculateEndTime() {
+        var odTime = document.querySelector('input[name="odTime"]').value;
+        var pracovnyCas = parseInt(document.querySelector('input[name="pracovnyCas"]').value);
 
-    <button type="submit">Submit</button>
-</form>
+        if (odTime) {
+            var odParts = odTime.split(":");
+            var odHours = parseInt(odParts[0]);
+            var odMinutes = parseInt(odParts[1]);
 
-@if (TempData["ValidationError"] != null)
-{
-    <div style="color: red;">Validation Error: @TempData["ValidationError"]</div>
-}
+            var doHours = odHours + pracovnyCas;
+            if (doHours >= 24) {
+                doHours -= 24;
+            }
+
+            var doTime = ('0' + doHours).slice(-2) + ":" + ('0' + odMinutes).slice(-2);
+            document.querySelector('input[name="doTime"]').value = doTime;
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>CESTOVNÝ PRÍKAZ</h1>
+        
+        <!-- Formulár -->
+        <form method="post">
+            <div class="info">
+                <div>
+                    <label>Zamestnávateľ</label>
+                    <input type="text" name="zamestnavatel" value="ABC Company" />
+
+                    <label>Priezvisko, meno, titul</label>
+                    <input type="text" name="priezviskoMenoTitul" placeholder="Ján Novák" />
+
+                    <label>Bydlisko</label>
+                    <input type="text" name="bydlisko" placeholder="Bratislava" />
+                </div>
+                <div>
+                    <label>Osobné číslo</label>
+                    <input type="text" name="osobneCislo" placeholder="123456" />
+
+                    <label>Útvar</label>
+                    <input type="text" name="utvar" placeholder="IT oddelenie" />
+
+                    <label>Telefón, klapka</label>
+                    <input type="text" name="telefon" placeholder="904123456" />
+
+                    <label style="display: inline-block;">Normálny pracovný čas</label>
+                    <input type="text" name="pracovnyCas" value="8" style="display: inline-block; width: 15px;" /> hodín
+
+                    <label style="display: inline-block; margin-left: 120px;">od</label>
+                    <input type="time" name="odTime" id="od" onchange="calculateEndTime()" required style="display: inline-block;" />
+                    <label style="display: inline-block">do</label>
+                    <input type="time" name="doTime" id="do" readonly style="display: inline-block;" />
+
+                </div>
+            </div>
+
+            <!-- Opakujúca sa sekcia: Cesty -->
+            <div id="cesty">
+                <div class="cesta-entry">
+                    <h3>Cesta</h3>
+                    <label>Začiatok cesty (miesto, dátum, hodina)</label>
+                    <input type="text" name="zaciatokCesty" placeholder="Bratislava, 2024-09-01, 08:00"/>
+
+                    <label>Mesto rokovania</label>
+                    <input type="text" name="mestoRokovania" placeholder="Praha" />
+
+                    <label>Účel cesty</label>
+                    <input type="text" name="ucelCesty" placeholder="Obchodné rokovanie"/>
+
+                    <label>Koniec cesty (miesto, dátum)</label>
+                    <input type="text" name="koniecCesty" placeholder="Praha, 2024-09-02, 18:00"/>
+                </div>
+            </div>
+            <button type="button" onclick="addCesta()">Pridať ďalšiu cestu</button>
+
+            <!-- Doplňujúce informácie -->
+            <h3>Doplnkové informácie</h3>
+            <label>Spolucestujúci</label>
+            <input type="text" name="spolucestujuci" placeholder="Peter Horváth"/>
+
+            <label>Určený dopravný prostriedok</label>
+            <input type="text" name="dopravnyProstriedok" placeholder="Automobil"/>
+
+            <label>Predpokladaná čiastka výdavkov v EUR</label>
+            <input type="text" name="ciastkaVydavkov" placeholder="200"/>
+
+            <label>Povolený preddavok v EUR</label>
+            <input type="text" name="preddavok" placeholder="100"/>
+
+            <!-- Podpisy -->
+            <h3>Podpisy</h3>
+            <label>Podpis pokladníka</label>
+            <input type="text" name="podpisPokladnika"/>
+
+            <label>Dátum podpisu pokladníka</label>
+            <input type="text" name="datumPodpisPokladnika"/>
+
+            <!-- Tlačidlá -->
+            <button type="button" onclick="autofillForm()">Automaticky vyplniť formulár</button>
+            <button type="submit" formaction="/Home/GenerateXml">Ulož XML</button>
+            <button type="submit" formaction="/Home/ValidateXml">Over XML voči XSD</button>
+            <button type="submit" formaction="/Home/TransformXmlToHtml">Transformuj XML do HTML</button>
+        </form>
+
+        <script>
+        // Keď používateľ zadá čas "od", vypočíta čas "do"
+        document.getElementById('od').addEventListener('change', function() {
+            var odTime = this.value;
+            var workingHours = parseFloat(document.getElementById('pracovnyCas').value);
+
+            if (odTime) {
+                // Rozdeľ čas "od" na hodiny a minúty
+                var odParts = odTime.split(':');
+                var odHours = parseInt(odParts[0]);
+                var odMinutes = parseInt(odParts[1]);
+
+                // Pripočítaj pracovné hodiny k času "od"
+                var doHours = odHours + workingHours;
+                if (doHours >= 24) {
+                    doHours -= 24;  // Nastav správny čas, ak presiahne 24 hodín
+                }
+
+                // Nastav čas "do"
+                var doTime = ('0' + doHours).slice(-2) + ':' + ('0' + odMinutes).slice(-2);
+                document.getElementById('do').value = doTime;
+            }
+        });
+</script>
+    </div>
+</body>
+</html>

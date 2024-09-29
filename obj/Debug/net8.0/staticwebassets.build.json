@@ -1,11 +1,58 @@
 {
   "Version": 1,
-  "Hash": "ttt8h7dfT668lBNbMlx7nn/2pgi5WALlhmudoQKp59k=",
+  "Hash": "Cxb9XGsozbSfHukgzj1BsgX91H450hnjPPkHJbJMptE=",
   "Source": "SIPVS",
   "BasePath": "_content/SIPVS",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "SIPVS\\wwwroot",
+      "Source": "SIPVS",
+      "ContentRoot": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\",
+      "BasePath": "_content/SIPVS",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\cestovnyprikaz.html",
+      "SourceId": "SIPVS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\",
+      "BasePath": "_content/SIPVS",
+      "RelativePath": "cestovnyprikaz.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cestovnyprikaz.html"
+    },
+    {
+      "Identity": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\cestovnyprikaz.xml",
+      "SourceId": "SIPVS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\",
+      "BasePath": "_content/SIPVS",
+      "RelativePath": "cestovnyprikaz.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cestovnyprikaz.xml"
+    }
+  ]
 }

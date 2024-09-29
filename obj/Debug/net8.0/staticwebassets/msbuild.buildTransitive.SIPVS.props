@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="../buildMultiTargeting/SIPVS.props" />
+  <Import Project="..\buildMultiTargeting\SIPVS.props" />
 </Project>
