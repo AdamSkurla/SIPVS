@@ -33,9 +33,11 @@
                         display: flex;
                         justify-content: space-between;
                         margin-bottom: 10px;
+                        gap: 15px; 
                     }
                     .row div {
-                        width: 48%;
+                        width: 100%;
+
                     }
                     label {
                         font-weight: bold;
@@ -47,6 +49,7 @@
                         background-color: #444;
                         border: none;
                         color: #fff;
+                        box-sizing: border-box;
                     }
                     .value {
                         padding: 8px;
@@ -156,7 +159,7 @@
 
                 <div class="section">
                     <h2>Podpisy</h2>
-                    <div class="row">
+                    <div class="column">
                         <div>
                             <label>Podpis pokladníka</label>
                             <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:PodpisPokladnika"/></div>
