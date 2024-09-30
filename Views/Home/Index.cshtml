@@ -129,6 +129,14 @@
 
                     <label>Bydlisko</label>
                     <input type="text" name="bydlisko" placeholder="Bratislava" />
+
+                    <label style="display: inline-block;">Normálny pracovný čas</label>
+                    <input type="text" name="pracovnyCas" value="8" style="display: inline-block; width: 15px;" /> hodín
+
+                    <label style="display: inline-block; margin-left: 120px;">od</label>
+                    <input type="time" name="odTime" id="od" onchange="calculateEndTime()" required style="display: inline-block;" />
+                    <label style="display: inline-block">do</label>
+                    <input type="time" name="doTime" id="do" readonly style="display: inline-block;" />
                 </div>
                 <div>
                     <label>Osobné číslo</label>
@@ -139,15 +147,6 @@
 
                     <label>Telefón, klapka</label>
                     <input type="text" name="telefon" placeholder="904123456" />
-
-                    <label style="display: inline-block;">Normálny pracovný čas</label>
-                    <input type="text" name="pracovnyCas" value="8" style="display: inline-block; width: 15px;" /> hodín
-
-                    <label style="display: inline-block; margin-left: 120px;">od</label>
-                    <input type="time" name="odTime" id="od" onchange="calculateEndTime()" required style="display: inline-block;" />
-                    <label style="display: inline-block">do</label>
-                    <input type="time" name="doTime" id="do" readonly style="display: inline-block;" />
-
                 </div>
             </div>
 

@@ -11,89 +11,162 @@
                 <style>
                     body {
                         font-family: Arial, sans-serif;
-                        margin: 20px;
+                        background-color: #282828;
+                        color: white;
+                        padding: 20px;
                     }
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
+                    .section {
                         margin-bottom: 20px;
+                        border: 1px solid #444;
+                        padding: 20px;
+                        border-radius: 5px;
+                        background-color: #333;
                     }
-                    table, th, td {
-                        border: 1px solid black;
-                        padding: 5px;
+                    .section h2 {
+                        color: #fff;
+                        font-size: 18px;
+                        margin-bottom: 10px;
+                        border-bottom: 1px solid #555;
+                        padding-bottom: 5px;
+                    }
+                    .row {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 10px;
+                    }
+                    .row div {
+                        width: 48%;
+                    }
+                    label {
+                        font-weight: bold;
+                        color: #aaa;
+                    }
+                    input, .value {
+                        width: 100%;
+                        padding: 8px;
+                        background-color: #444;
+                        border: none;
+                        color: #fff;
+                    }
+                    .value {
+                        padding: 8px;
                     }
                 </style>
             </head>
             <body>
-                <h1>Cestovný príkaz</h1>
-                <table>
-                    <tr>
-                        <th>Zamestnávateľ</th>
-                        <td><xsl:value-of select="ns:CestovnyPrikaz/ns:Zamestnavatel"/></td>
-                    </tr>
-                    <tr>
-                        <th>Priezvisko, meno, titul</th>
-                        <td><xsl:value-of select="ns:CestovnyPrikaz/ns:PriezviskoMenoTitul"/></td>
-                    </tr>
-                    <tr>
-                        <th>Bydlisko</th>
-                        <td><xsl:value-of select="ns:CestovnyPrikaz/ns:Bydlisko"/></td>
-                    </tr>
-                    <tr>
-                        <th>Osobné číslo</th>
-                        <td><xsl:value-of select="ns:CestovnyPrikaz/ns:OsobneCislo"/></td>
-                    </tr>
-                    <tr>
-                        <th>Útvar</th>
-                        <td><xsl:value-of select="ns:CestovnyPrikaz/ns:Utvar"/></td>
-                    </tr>
-                    <tr>
-                        <th>Telefón</th>
-                        <td><xsl:value-of select="ns:CestovnyPrikaz/ns:Telefon"/></td>
-                    </tr>
-                    <tr>
-                        <th>Normálny pracovný čas</th>
-                        <td>
-                            <xsl:value-of select="ns:CestovnyPrikaz/ns:PracovnyCas"/> hodín, od 
-                            <xsl:value-of select="ns:CestovnyPrikaz/ns:Od"/> do 
-                            <xsl:value-of select="ns:CestovnyPrikaz/ns:Do"/>
-                        </td>
-                    </tr>
-                </table>
+                <h1>Cestovný PRÍKAZ</h1>
+                
+                <div class="section">
+                    <div class="row">
+                        <div>
+                            <label>Zamestnávateľ</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:Zamestnavatel"/></div>
+                        </div>
+                        <div>
+                            <label>Osobné číslo</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:OsobneCislo"/></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <label>Priezvisko, meno, titul</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:PriezviskoMenoTitul"/></div>
+                        </div>
+                        <div>
+                            <label>Útvar</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:Utvar"/></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <label>Bydlisko</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:Bydlisko"/></div>
+                        </div>
+                        <div>
+                            <label>Telefón, klapka</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:Telefon"/></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <label>Normálny pracovný čas</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:PracovnyCas"/> hodín, od <xsl:value-of select="ns:CestovnyPrikaz/ns:Od"/> do <xsl:value-of select="ns:CestovnyPrikaz/ns:Do"/></div>
+                        </div>
+                    </div>
+                </div>
 
-                <h2>Cesty</h2>
-                <table>
+                <div class="section">
+                    
                     <xsl:for-each select="ns:CestovnyPrikaz/ns:Cesty/ns:Cesta">
-                        <tr>
-                            <th>Začiatok cesty</th>
-                            <td><xsl:value-of select="ns:ZaciatokCesty"/></td>
-                        </tr>
-                        <tr>
-                            <th>Mesto rokovania</th>
-                            <td><xsl:value-of select="ns:MestoRokovania"/></td>
-                        </tr>
-                        <tr>
-                            <th>Účel cesty</th>
-                            <td><xsl:value-of select="ns:UcelCesty"/></td>
-                        </tr>
-                        <tr>
-                            <th>Koniec cesty</th>
-                            <td><xsl:value-of select="ns:KoniecCesty"/></td>
-                        </tr>
+                        <h2>Cesta</h2>
+                        <div class="row">
+                            <div>
+                                <label>Začiatok cesty (miesto, dátum, hodina)</label>
+                                <div class="value"><xsl:value-of select="ns:ZaciatokCesty"/></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Mesto rokovania</label>
+                                <div class="value"><xsl:value-of select="ns:MestoRokovania"/></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Účel cesty</label>
+                                <div class="value"><xsl:value-of select="ns:UcelCesty"/></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Koniec cesty (miesto, dátum)</label>
+                                <div class="value"><xsl:value-of select="ns:KoniecCesty"/></div>
+                            </div>
+                        </div>
                     </xsl:for-each>
-                </table>
+                </div>
 
-                <h2>Podpisy</h2>
-                <table>
-                    <tr>
-                        <th>Podpis pokladníka</th>
-                        <td><xsl:value-of select="ns:CestovnyPrikaz/ns:PodpisPokladnika"/></td>
-                    </tr>
-                    <tr>
-                        <th>Dátum podpisu pokladníka</th>
-                        <td><xsl:value-of select="ns:CestovnyPrikaz/ns:DatumPodpisPokladnika"/></td>
-                    </tr>
-                </table>
+                <div class="section">
+                    <h2>Doplnkové informácie</h2>
+                    <div class="row">
+                        <div>
+                            <label>Spolucestujúci</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:Spolucestujuci"/></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <label>Určený dopravný prostriedok</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:DopravnyProstriedok"/></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <label>Predpokladaná čiastka výdavkov v EUR</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:CiastkaVydavkov"/></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <label>Povolený preddavok v EUR</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:Preddavok"/></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Podpisy</h2>
+                    <div class="row">
+                        <div>
+                            <label>Podpis pokladníka</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:PodpisPokladnika"/></div>
+                        </div>
+                        <div>
+                            <label>Dátum podpisu pokladníka</label>
+                            <div class="value"><xsl:value-of select="ns:CestovnyPrikaz/ns:DatumPodpisPokladnika"/></div>
+                        </div>
+                    </div>
+                </div>
             </body>
         </html>
     </xsl:template>

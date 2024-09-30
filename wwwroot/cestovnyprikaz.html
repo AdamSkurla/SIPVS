@@ -5,98 +5,137 @@
     <style>
                     body {
                         font-family: Arial, sans-serif;
-                        margin: 20px;
+                        background-color: #282828;
+                        color: white;
+                        padding: 20px;
                     }
-                    table {
-                        width: 100%;
-                        border-collapse: collapse;
+                    .section {
                         margin-bottom: 20px;
+                        border: 1px solid #444;
+                        padding: 20px;
+                        border-radius: 5px;
+                        background-color: #333;
                     }
-                    table, th, td {
-                        border: 1px solid black;
-                        padding: 5px;
+                    .section h2 {
+                        color: #fff;
+                        font-size: 18px;
+                        margin-bottom: 10px;
+                        border-bottom: 1px solid #555;
+                        padding-bottom: 5px;
+                    }
+                    .row {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 10px;
+                    }
+                    .row div {
+                        width: 48%;
+                    }
+                    label {
+                        font-weight: bold;
+                        color: #aaa;
+                    }
+                    input, .value {
+                        width: 100%;
+                        padding: 8px;
+                        background-color: #444;
+                        border: none;
+                        color: #fff;
+                    }
+                    .value {
+                        padding: 8px;
                     }
                 </style>
   </head>
   <body>
-    <h1>Cestovný príkaz</h1>
-    <table>
-      <tr>
-        <th>Zamestnávateľ</th>
-        <td>ABC Company</td>
-      </tr>
-      <tr>
-        <th>Priezvisko, meno, titul</th>
-        <td>Ján Novák</td>
-      </tr>
-      <tr>
-        <th>Bydlisko</th>
-        <td>Bratislava</td>
-      </tr>
-      <tr>
-        <th>Osobné číslo</th>
-        <td>123456</td>
-      </tr>
-      <tr>
-        <th>Útvar</th>
-        <td>IT oddelenie</td>
-      </tr>
-      <tr>
-        <th>Telefón</th>
-        <td>904123456</td>
-      </tr>
-      <tr>
-        <th>Normálny pracovný čas</th>
-        <td>8 hodín, od 
-                            08:00:00 do 
-                            16:00:00</td>
-      </tr>
-    </table>
-    <h2>Cesty</h2>
-    <table>
-      <tr>
-        <th>Začiatok cesty</th>
-        <td>Bratislava, 2024-09-01, 08:00</td>
-      </tr>
-      <tr>
-        <th>Mesto rokovania</th>
-        <td>Praha</td>
-      </tr>
-      <tr>
-        <th>Účel cesty</th>
-        <td>Obchodné rokovanie</td>
-      </tr>
-      <tr>
-        <th>Koniec cesty</th>
-        <td>Praha, 2024-09-02, 18:00</td>
-      </tr>
-      <tr>
-        <th>Začiatok cesty</th>
-        <td>Košice, 2024-09-05, 10:00</td>
-      </tr>
-      <tr>
-        <th>Mesto rokovania</th>
-        <td>Žilina</td>
-      </tr>
-      <tr>
-        <th>Účel cesty</th>
-        <td>Interné školenie</td>
-      </tr>
-      <tr>
-        <th>Koniec cesty</th>
-        <td>Žilina, 2024-09-06, 17:00</td>
-      </tr>
-    </table>
-    <h2>Podpisy</h2>
-    <table>
-      <tr>
-        <th>Podpis pokladníka</th>
-        <td>Ján Novák</td>
-      </tr>
-      <tr>
-        <th>Dátum podpisu pokladníka</th>
-        <td>2024-09-01</td>
-      </tr>
-    </table>
+    <h1>Cestovný PRÍKAZ</h1>
+    <div class="section">
+      <div class="row">
+        <div><label>Zamestnávateľ</label><div class="value">ABC Company</div>
+        </div>
+        <div><label>Osobné číslo</label><div class="value">123456</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Priezvisko, meno, titul</label><div class="value">Ján Novák</div>
+        </div>
+        <div><label>Útvar</label><div class="value">IT oddelenie</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Bydlisko</label><div class="value">Bratislava</div>
+        </div>
+        <div><label>Telefón, klapka</label><div class="value">904123456</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Normálny pracovný čas</label><div class="value">8 hodín, od 08:00:00 do 16:00:00</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Cesta</h2>
+      <div class="row">
+        <div><label>Začiatok cesty (miesto, dátum, hodina)</label><div class="value">Bratislava, 2024-09-01, 08:00</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Mesto rokovania</label><div class="value">Praha</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Účel cesty</label><div class="value">Obchodné rokovanie</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Koniec cesty (miesto, dátum)</label><div class="value">Praha, 2024-09-02, 18:00</div>
+        </div>
+      </div>
+      <h2>Cesta</h2>
+      <div class="row">
+        <div><label>Začiatok cesty (miesto, dátum, hodina)</label><div class="value">Košice, 2024-09-05, 10:00</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Mesto rokovania</label><div class="value">Žilina</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Účel cesty</label><div class="value">Interné školenie</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Koniec cesty (miesto, dátum)</label><div class="value">Žilina, 2024-09-06, 17:00</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Doplnkové informácie</h2>
+      <div class="row">
+        <div><label>Spolucestujúci</label><div class="value">Peter Horváth</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Určený dopravný prostriedok</label><div class="value">Automobil</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Predpokladaná čiastka výdavkov v EUR</label><div class="value">200</div>
+        </div>
+      </div>
+      <div class="row">
+        <div><label>Povolený preddavok v EUR</label><div class="value">100</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Podpisy</h2>
+      <div class="row">
+        <div><label>Podpis pokladníka</label><div class="value">Ján Novák</div>
+        </div>
+        <div><label>Dátum podpisu pokladníka</label><div class="value">2024-09-01</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
