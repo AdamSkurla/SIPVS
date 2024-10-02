@@ -1,27 +1,27 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\cestovnyprikaz.html",
-      "PackagePath": "staticwebassets\\cestovnyprikaz.html"
+      "Id": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/cestovnyprikaz.html",
+      "PackagePath": "staticwebassets/cestovnyprikaz.html"
     },
     {
-      "Id": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\cestovnyprikaz.xml",
-      "PackagePath": "staticwebassets\\cestovnyprikaz.xml"
+      "Id": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/cestovnyprikaz.xml",
+      "PackagePath": "staticwebassets/cestovnyprikaz.xml"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SIPVS.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.SIPVS.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.SIPVS.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.SIPVS.props",
       "PackagePath": "build\\SIPVS.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.SIPVS.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.SIPVS.props",
       "PackagePath": "buildMultiTargeting\\SIPVS.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.SIPVS.props",
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.SIPVS.props",
       "PackagePath": "buildTransitive\\SIPVS.props"
     }
   ],

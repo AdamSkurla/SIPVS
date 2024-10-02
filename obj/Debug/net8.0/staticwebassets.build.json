@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Cxb9XGsozbSfHukgzj1BsgX91H450hnjPPkHJbJMptE=",
+  "Hash": "bpq6avNkxji2jpYNlhqUuUd62mRuUM56bdXDLNEcfmg=",
   "Source": "SIPVS",
   "BasePath": "_content/SIPVS",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "SIPVS\\wwwroot",
+      "Name": "SIPVS/wwwroot",
       "Source": "SIPVS",
-      "ContentRoot": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\",
+      "ContentRoot": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/",
       "BasePath": "_content/SIPVS",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\cestovnyprikaz.html",
+      "Identity": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/cestovnyprikaz.html",
       "SourceId": "SIPVS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\",
+      "ContentRoot": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/",
       "BasePath": "_content/SIPVS",
       "RelativePath": "cestovnyprikaz.html",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\cestovnyprikaz.html"
+      "OriginalItemSpec": "wwwroot/cestovnyprikaz.html"
     },
     {
-      "Identity": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\cestovnyprikaz.xml",
+      "Identity": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/cestovnyprikaz.xml",
       "SourceId": "SIPVS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\grejty\\PycharmProjects\\SIPVS\\wwwroot\\",
+      "ContentRoot": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/",
       "BasePath": "_content/SIPVS",
       "RelativePath": "cestovnyprikaz.xml",
       "AssetKind": "All",
@@ -52,7 +52,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\cestovnyprikaz.xml"
+      "OriginalItemSpec": "wwwroot/cestovnyprikaz.xml"
     }
   ]
 }

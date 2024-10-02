@@ -17,13 +17,15 @@ namespace SIPVS.Controllers
         [HttpPost]
         public IActionResult GenerateXml(string zamestnavatel, string priezviskoMenoTitul, string bydlisko, 
                                         string osobneCislo, string utvar, string telefon, string pracovnyCas, 
-                                        string odTime, string doTime, // Pridanie parametrov pre 'Od' a 'Do'
+                                        string odTime, string doTime,
                                         string[] zaciatokCesty, string[] mestoRokovania, string[] ucelCesty, string[] koniecCesty,
                                         string spolucestujuci, string dopravnyProstriedok, string ciastkaVydavkov, string preddavok,
                                         string podpisPokladnika, string datumPodpisPokladnika)
         {
             // Definovanie namespace
             XNamespace ns = "http://travelorder.example.com/sipvs";
+            XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance"; // Pridanie xmlns pre xsi:nil
+
 
             // Zabezpečenie formátu času HH:MM:SS
             if (!string.IsNullOrEmpty(odTime) && odTime.Length == 5) // Ak je čas vo formáte HH:MM
@@ -35,6 +37,15 @@ namespace SIPVS.Controllers
             {
                 doTime += ":00"; // Pridáme sekundy
             }
+
+            // Pridanie logiky pre nillable polia CiastkaVydavkov a Preddavok
+            XElement ciastkaVydavkovElement = string.IsNullOrEmpty(ciastkaVydavkov)
+                ? new XElement(ns + "CiastkaVydavkov", new XAttribute(xsi + "nil", "true"))
+                : new XElement(ns + "CiastkaVydavkov", ciastkaVydavkov);
+
+            XElement preddavokElement = string.IsNullOrEmpty(preddavok)
+                ? new XElement(ns + "Preddavok", new XAttribute(xsi + "nil", "true"))
+                : new XElement(ns + "Preddavok", preddavok);
 
             // Vytvorenie XML dokumentu s opakujúcimi sa sekciami Cesta a pridaním namespace
             XDocument xmlDocument = new XDocument(
@@ -59,8 +70,8 @@ namespace SIPVS.Controllers
                     ),
                     new XElement(ns + "Spolucestujuci", spolucestujuci),
                     new XElement(ns + "DopravnyProstriedok", dopravnyProstriedok),
-                    new XElement(ns + "CiastkaVydavkov", ciastkaVydavkov),
-                    new XElement(ns + "Preddavok", preddavok),
+                    ciastkaVydavkovElement,
+                    preddavokElement,
                     new XElement(ns + "PodpisPokladnika", podpisPokladnika),
                     new XElement(ns + "DatumPodpisPokladnika", datumPodpisPokladnika)
                 )
