@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://travelorder.example.com/sipvs"
+           xmlns="http://travelorder.example.com/sipvs"
+           elementFormDefault="qualified">
+
+  <xs:element name="CestovnyPrikaz">
+    <xs:complexType>
+      <xs:sequence>
+                <!-- Ostatné elementy -->
+        <xs:element name="Zamestnavatel" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+        <xs:element name="PriezviskoMenoTitul" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+        <xs:element name="Bydlisko" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+        <xs:element name="OsobneCislo" type="xs:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+
+        <xs:element name="Utvar" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+        <xs:element name="Telefon" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="\d{9}"/> 
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+        <xs:element name="PracovnyCas" type="xs:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+
+        <xs:element name="Od" type="xs:time" minOccurs="1" maxOccurs="1" nillable="false"/>
+
+        <xs:element name="Do" type="xs:time" minOccurs="1" maxOccurs="1" nillable="false"/>
+
+
+        <!-- Cesty -->
+        <xs:element name="Cesty" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cesta" maxOccurs="unbounded" minOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ZaciatokCesty" minOccurs="1" maxOccurs="1" nillable="false">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+
+                    <xs:element name="MestoRokovania" minOccurs="1" maxOccurs="1" nillable="false">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+
+                    <xs:element name="UcelCesty" minOccurs="1" maxOccurs="1" nillable="false">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+
+                    <xs:element name="KoniecCesty" minOccurs="1" maxOccurs="1" nillable="false">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                                      </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- Spolucestujuci -->
+        <xs:element name="Spolucestujuci" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+        <!-- Dopravný prostriedok -->
+        <xs:element name="DopravnyProstriedok" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+        <!-- Čiastka výdavkov -->
+        <xs:element name="CiastkaVydavkov" type="xs:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+        <!-- Preddavok -->
+        <xs:element name="Preddavok" type="xs:int" minOccurs="0" maxOccurs="1" nillable="true"/>
+
+        <!-- Podpis pokladníka je povinný string -->
+        <xs:element name="PodpisPokladnika" minOccurs="1" maxOccurs="1" nillable="false">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <!-- Povinný dátum podpisu pokladníka vo formáte YYYY-MM-DD -->
+        <xs:element name="DatumPodpisPokladnika" type="xs:date" minOccurs="1" maxOccurs="1" nillable="false"/>
+
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

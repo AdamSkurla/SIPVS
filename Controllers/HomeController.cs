@@ -15,8 +15,8 @@ namespace SIPVS.Controllers
 
         // Generovanie XML
         [HttpPost]
-        public IActionResult GenerateXml(string zamestnavatel, string priezviskoMenoTitul, string bydlisko, 
-                                        string osobneCislo, string utvar, string telefon, string pracovnyCas, 
+        public IActionResult GenerateXml(string zamestnavatel, string priezviskoMenoTitul, string bydlisko,
+                                        string osobneCislo, string utvar, string telefon, string pracovnyCas,
                                         string odTime, string doTime,
                                         string[] zaciatokCesty, string[] mestoRokovania, string[] ucelCesty, string[] koniecCesty,
                                         string spolucestujuci, string dopravnyProstriedok, string ciastkaVydavkov, string preddavok,
@@ -57,9 +57,9 @@ namespace SIPVS.Controllers
                     new XElement(ns + "Utvar", utvar),
                     new XElement(ns + "Telefon", telefon),
                     new XElement(ns + "PracovnyCas", pracovnyCas),
-                    new XElement(ns + "Od", odTime), 
-                    new XElement(ns + "Do", doTime), 
-                    new XElement(ns + "Cesty", 
+                    new XElement(ns + "Od", odTime),
+                    new XElement(ns + "Do", doTime),
+                    new XElement(ns + "Cesty",
                         from i in Enumerable.Range(0, zaciatokCesty.Length)
                         select new XElement(ns + "Cesta",
                             new XElement(ns + "ZaciatokCesty", zaciatokCesty[i]),
@@ -109,7 +109,7 @@ namespace SIPVS.Controllers
             }
             catch (Exception ex)
             {
-                return Content ("Chyba pri načítaní XML: " + ex.Message );
+                return Content("Chyba pri načítaní XML: " + ex.Message);
             }
 
             string validationResult = string.Empty;
@@ -123,16 +123,16 @@ namespace SIPVS.Controllers
             }
             catch (Exception ex)
             {
-                return Content ("Chyba pri validácií XML: " + ex.Message );
+                return Content("Chyba pri validácií XML: " + ex.Message);
             }
 
             if (string.IsNullOrEmpty(validationResult))
             {
-                return Content ("XML je platné!" );
+                return Content("XML je platné!");
             }
             else
             {
-                return Content("XML obsahuje chyby: " + validationResult );
+                return Content("XML obsahuje chyby: " + validationResult);
             }
         }
 
@@ -168,6 +168,55 @@ namespace SIPVS.Controllers
             }
 
             return Content("XML bolo úspešne transformované do HTML a uložené do " + htmlOutputPath);
+        }
+
+
+
+        [HttpGet]
+        public IActionResult XmlData()
+        {
+            string xmlPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cestovnyprikaz.xml");
+            try
+            {
+                XDocument xmlDoc = XDocument.Load(xmlPath);
+                return Content(xmlDoc.ToString(), "text/xml");
+            }
+            catch (Exception ex)
+            {
+                return Content($"Error loading XML: {ex.Message}");
+            }
+        }
+
+        // Handler to fetch XSD data
+        [HttpGet]
+        public IActionResult XsdData()
+        {
+            string xsdPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "schemas", "travelorder.xsd");
+            try
+            {
+                string xsdContent = System.IO.File.ReadAllText(xsdPath);
+                return Content(xsdContent, "text/xml");
+            }
+            catch (Exception ex)
+            {
+                return Content($"Error loading XSD: {ex.Message}");
+            }
+        }
+
+        // Handler to fetch XSL data
+        [HttpGet]
+        public IActionResult XslData()
+        {
+            string xslPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "schemas", "travelorder.xsl");
+            try
+            {
+                string xslContent = System.IO.File.ReadAllText(xslPath);
+                return Content(xslContent, "text/xml");
+            }
+            catch (Exception ex)
+            {
+                return Content($"Error loading XSL: {ex.Message}");
+            }
         }
     }
 }

@@ -1,27 +1,43 @@
 {
   "Files": [
     {
-      "Id": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/cestovnyprikaz.html",
-      "PackagePath": "staticwebassets/cestovnyprikaz.html"
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\cestovnyprikaz.html",
+      "PackagePath": "staticwebassets\\cestovnyprikaz.html"
     },
     {
-      "Id": "/Users/grejty/Documents/GitHub/SIPVS/wwwroot/cestovnyprikaz.xml",
-      "PackagePath": "staticwebassets/cestovnyprikaz.xml"
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\cestovnyprikaz.xml",
+      "PackagePath": "staticwebassets\\cestovnyprikaz.xml"
     },
     {
-      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.SIPVS.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\example.pdf",
+      "PackagePath": "staticwebassets\\example.pdf"
+    },
+    {
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\pdffile.pdf",
+      "PackagePath": "staticwebassets\\pdffile.pdf"
+    },
+    {
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\schemas\\travelorder.xsd",
+      "PackagePath": "staticwebassets\\schemas\\travelorder.xsd"
+    },
+    {
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\schemas\\travelorder.xsl",
+      "PackagePath": "staticwebassets\\schemas\\travelorder.xsl"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SIPVS.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.SIPVS.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.SIPVS.props",
       "PackagePath": "build\\SIPVS.props"
     },
     {
-      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.SIPVS.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.SIPVS.props",
       "PackagePath": "buildMultiTargeting\\SIPVS.props"
     },
     {
-      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.SIPVS.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.SIPVS.props",
       "PackagePath": "buildTransitive\\SIPVS.props"
     }
   ],
