@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SIPVS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6b5710bae983458b01f69a377a521ed49e86202")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+151d41c45fce8f40c67c6cf71c24527eb1e48ca9")]
 [assembly: System.Reflection.AssemblyProductAttribute("SIPVS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SIPVS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

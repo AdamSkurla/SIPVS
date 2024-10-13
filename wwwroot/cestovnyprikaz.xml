@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CestovnyPrikaz xmlns="http://travelorder.example.com/sipvs">
   <Zamestnavatel>ABC Company</Zamestnavatel>
-  <PriezviskoMenoTitul>Ján Novák</PriezviskoMenoTitul>
-  <Bydlisko>Bratislava</Bydlisko>
-  <OsobneCislo>123456</OsobneCislo>
+  <PriezviskoMenoTitul>Miro Drobny</PriezviskoMenoTitul>
+  <Bydlisko>Piešťany</Bydlisko>
+  <OsobneCislo>1470258369</OsobneCislo>
   <Utvar>IT oddelenie</Utvar>
   <Telefon>904123456</Telefon>
   <PracovnyCas>8</PracovnyCas>
@@ -11,7 +11,7 @@
   <Do>16:00:00</Do>
   <Cesty>
     <Cesta>
-      <ZaciatokCesty>Bratislava, 2024-09-01, 08:00</ZaciatokCesty>
+      <ZaciatokCesty>Prešov, 2024-09-01, 08:00</ZaciatokCesty>
       <MestoRokovania>Praha</MestoRokovania>
       <UcelCesty>Obchodné rokovanie</UcelCesty>
       <KoniecCesty>Praha, 2024-09-02, 18:00</KoniecCesty>

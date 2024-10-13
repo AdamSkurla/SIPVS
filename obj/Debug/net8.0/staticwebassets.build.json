@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/91fGl/Rhp3OwKKHo84d3qhkhxHFcwOV7HpQD1gHGVY=",
+  "Hash": "8nuxaZ/3e+0CoJuwE4dzwKqo1PQSIHD9EPw+58BTD9o=",
   "Source": "SIPVS",
   "BasePath": "_content/SIPVS",
   "Mode": "Default",
@@ -55,6 +55,25 @@
       "OriginalItemSpec": "wwwroot\\cestovnyprikaz.xml"
     },
     {
+      "Identity": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\example_pdf_format_1_4.pdf",
+      "SourceId": "SIPVS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\",
+      "BasePath": "_content/SIPVS",
+      "RelativePath": "example_pdf_format_1_4.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\example_pdf_format_1_4.pdf"
+    },
+    {
       "Identity": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\example.pdf",
       "SourceId": "SIPVS",
       "SourceType": "Discovered",
@@ -93,6 +112,44 @@
       "OriginalItemSpec": "wwwroot\\pdffile.pdf"
     },
     {
+      "Identity": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\result_signed.asice",
+      "SourceId": "SIPVS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\",
+      "BasePath": "_content/SIPVS",
+      "RelativePath": "result_signed.asice",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\result_signed.asice"
+    },
+    {
+      "Identity": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\result.asice",
+      "SourceId": "SIPVS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\",
+      "BasePath": "_content/SIPVS",
+      "RelativePath": "result.asice",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\result.asice"
+    },
+    {
       "Identity": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\schemas\\travelorder.xsd",
       "SourceId": "SIPVS",
       "SourceType": "Discovered",
@@ -129,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\schemas\\travelorder.xsl"
+    },
+    {
+      "Identity": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\signed.xml",
+      "SourceId": "SIPVS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\",
+      "BasePath": "_content/SIPVS",
+      "RelativePath": "signed.xml",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\signed.xml"
     }
   ]
 }

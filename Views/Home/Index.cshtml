@@ -126,22 +126,7 @@
             src="https://www.slovensko.sk/static/zep/dbridge_js/v1.0/dSigXadesExtender.min.js"></script>
         </script>
 
-     @* <script>
-
-            ditec.dSigXadesJs.detectSupportedPlatforms(["java", "dotNet", "dLauncherJava", "dLauncherDotNet"], {
-                onSuccess: (data) => {
-                    console.log('Podporovane platformy: ' + data)
-                }
-            });
-
-            function sign_documment() {
-               function Callback(onSuccess) {
-				this.onSuccess = onSuccess;
-				this.onError = function(e) {
-					alert("Chyba: " + e);
-				}
-			}					
-        </script> *@
+   
 
 
 @using System.Web
@@ -149,7 +134,7 @@
 <script>
     @{
         // Obtain the Base64 content using your C# method
-        var base64Content = SIPVS.LoadPdf.LoadFileAsBase64("wwwroot\\example.pdf");
+        var base64Content = SIPVS.LoadPdf.LoadFileAsBase64("wwwroot\\example_pdf_format_1_4.pdf");
         var encodedBase64Content = HttpUtility.UrlEncode(base64Content);
         
         // print the first 20 characters of the base64 content  
@@ -180,14 +165,14 @@
 
                 ditec.dSigXadesJs.initialize(new Callback(function () {
                     //  function(objectId, objectDescription, sourcePdfBase64, password, objectFormatIdentifier, reqLevel, convert, callback) {
-                    ditec.dSigXadesJs.addXmlObject2("objectId_3", "Cestovny prikaz", xmlData, xsdData, "http://travelorder.example.com/sipvs", "http://travelorder.example.com/sipvs", xslData, "http://travelorder.example.com/sipvs", 'HTML', new Callback(function () {
+                    ditec.dSigXadesJs.addXmlObject2("ID_1", "Cestovny prikaz", xmlData, xsdData, "http://travelorder.example.com/sipvs", "http://travelorder.example.com/sipvs", xslData, "http://travelorder.example.com/sipvs", 'HTML', new Callback(function () {
 
                         ditec.dSigXadesJs.addPdfObject(
-                                    "objectId_2",
+                                    "ID_2",
                                     "Podpisovany pdf subor",
                                     decodeURIComponent("@encodedBase64Content"), 
                                     "",
-                                    "http://example.com/objectFormatIdentifier",
+                                    "http://travelorder.example.com/sipvs",
                                     2,
                                     false, new Callback(function () {
 
@@ -205,7 +190,7 @@
                                     const url = URL.createObjectURL(blob);
                                     const a = document.createElement('a');
                                     a.href = url;
-                                    a.download = 'signed.xml';
+                                    a.download = 'result_signed.asice';
                                     a.click();
                                     URL.revokeObjectURL(url);
                                 }));

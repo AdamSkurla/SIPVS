@@ -13,8 +13,20 @@
       "PackagePath": "staticwebassets\\example.pdf"
     },
     {
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\example_pdf_format_1_4.pdf",
+      "PackagePath": "staticwebassets\\example_pdf_format_1_4.pdf"
+    },
+    {
       "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\pdffile.pdf",
       "PackagePath": "staticwebassets\\pdffile.pdf"
+    },
+    {
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\result.asice",
+      "PackagePath": "staticwebassets\\result.asice"
+    },
+    {
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\result_signed.asice",
+      "PackagePath": "staticwebassets\\result_signed.asice"
     },
     {
       "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\schemas\\travelorder.xsd",
@@ -23,6 +35,10 @@
     {
       "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\schemas\\travelorder.xsl",
       "PackagePath": "staticwebassets\\schemas\\travelorder.xsl"
+    },
+    {
+      "Id": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\signed.xml",
+      "PackagePath": "staticwebassets\\signed.xml"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SIPVS.Microsoft.AspNetCore.StaticWebAssets.props",
