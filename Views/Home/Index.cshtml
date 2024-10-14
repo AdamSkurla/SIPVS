@@ -146,93 +146,197 @@
 
     <script>
 
-            function Callback(onSuccess) {
-                this.onSuccess = onSuccess;
-                this.onError = function (e) {
-                    alert("Chyba: " + e);
-                };
-            }
+    async function executeScript() {
 
-        async function executeScript() {
+        // Load XML, XSD, and XSL data
+        var xmlData = await loadXML();
+        var xsdData = await loadXSD();
+        var xslData = await loadXSL();
 
-            var xmlData = await loadXML();
-            var xsdData = await loadXSD();
-            var xslData = await loadXSL();
+        // Encode XML data to base64
+        var xmlDataBase64 = btoa(unescape(encodeURIComponent(xmlData)));
 
-        
-            // Sign the document
-            ditec.dSigXadesJs.deploy(null, new Callback(function () {
-
-                ditec.dSigXadesJs.initialize(new Callback(function () {
-                    //  function(objectId, objectDescription, sourcePdfBase64, password, objectFormatIdentifier, reqLevel, convert, callback) {
-                    ditec.dSigXadesJs.addXmlObject2("ID_1", "Cestovny prikaz", xmlData, xsdData, "http://travelorder.example.com/sipvs", "http://travelorder.example.com/sipvs", xslData, "http://travelorder.example.com/sipvs", 'HTML', new Callback(function () {
-
-                        ditec.dSigXadesJs.addPdfObject(
-                                    "ID_2",
-                                    "Podpisovany pdf subor",
-                                    decodeURIComponent("@encodedBase64Content"), 
-                                    "",
-                                    "http://travelorder.example.com/sipvs",
-                                    2,
-                                    false, new Callback(function () {
-
-                            ditec.dSigXadesJs.sign20("signatureId", "http://www.w3.org/2001/04/xmlenc#sha256", "urn:oid:1.3.158.36061701.1.2.3", "dataEnvelopeId", "http://dataEnvelopeURI", "dataEnvelopeDescr", new Callback(function () {
-
-                                ditec.dSigXadesJs.getSignedXmlWithEnvelope(new Callback(function (ret) {
-                                    // returned signed document
-                                    // Format XML
-                                    const xmlDoc = new DOMParser().parseFromString(ret, 'text/xml');
-                                    const serializer = new XMLSerializer();
-                                    const formattedXML = serializer.serializeToString(xmlDoc);
-
-                                    // Save XML to a new file
-                                    const blob = new Blob([formattedXML], { type: 'text/xml' });
-                                    const url = URL.createObjectURL(blob);
-                                    const a = document.createElement('a');
-                                    a.href = url;
-                                    a.download = 'result_signed.asice';
-                                    a.click();
-                                    URL.revokeObjectURL(url);
-                                }));
-                            }));
-                        }));
-                    }));
-                }));
-            }));
-        }
      
+        ditec.dSigXadesBpJs.deploy(null, new Callback(function () {
+            ditec.dSigXadesBpJs.initialize(new Callback(function () {
+                ditec.dSigXadesBpJs.addPdfObject(
+                            "ID_1", // objectId
+                            "Podpisovany pdf subor", // objectDescription
+                            decodeURIComponent("@encodedBase64Content"), // sourcePdfBase64
+                            "", // password
+                            "http://travelorder.example.com/sipvs", // objectFormatIdentifier
+                            2, // reqLevel
+                            false, // convert
+                            new Callback(function () { // callback
+                                
+                                ditec.dSigXadesBpJs.addXmlObject(
+                                    "ID_2", // objectId
+                                    "Cestovny prikaz", // objectDescription
+                                    "http://travelorder.example.com/sipvs",  // objectFormatIdentifier
+                                    xmlData,    //xdcXMLData
+                                    "http://travelorder.example.com/sipvs", // xdcIdentifier
+                                    "1.0", // xdcVersion
+                                    xsdData, // xdcUsedXSD
+                                    "http://travelorder.example.com/sipvs", // xsdReferenceURI
+                                    xslData, // xdcUsedXSLT
+                                    "http://travelorder.example.com/sipvs", // xslReferenceURI
+                                    "HTML", // xslMediaDestinationTypeDescription
+                                    "http://www.w3.org/1999/XSL/Transform", // xslXSLTLanguage
+                                    "http://www.w3.org/1999/xhtml", // xslTargetEnvironment
+                                    false, // xdcIncludeRefs
+                                    "http://data.gov.sk/def/container/xmldatacontainer+xml/1.1", // xdcNamespaceURI
+
+                                    new Callback(function () { // callback
+                                    // Sign with ASiCE envelope
+                                    ditec.dSigXadesBpJs.sign(
+                                    "signatureId",
+                                    "http://www.w3.org/2001/04/xmlenc#sha256",
+                                    "",
+                                    new Callback(function () {
+                                        ditec.dSigXadesBpJs.getSignatureWithASiCEnvelopeBase64(
+                                            new Callback(function (ret) {
+                                           
+                                            console.log(ret);
+                                            // Convert the Base64 string to a Blob
+        const base64 = ret;
+        const byteCharacters = atob(base64);
+        const byteNumbers = new Array(byteCharacters.length);
+
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'application/vnd.etsi.asic-e+zip' });
+
+        // Create a link element to trigger download
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'signed-document.asice';  // Set the desired filename
+
+        // Append link to the body and trigger download
+        document.body.appendChild(link);
+        link.click();
+
+        // Remove the link after triggering download
+        document.body.removeChild(link);
+                                        
+                                            })  
+                                        )
+                                    })
+                                );
+                            })
+                        );
+                    })
+                );
+            }));
+        }));
+ 
+
+   
+
+           @* ditec.dSigXadesBpJs.deploy(null, new Callback(function () {
+            ditec.dSigXadesBpJs.initialize(new Callback(function () {
+                ditec.dSigXadesBpJs.addPdfObject(
+                            "ID_1", // objectId
+                            "Podpisovany pdf subor", // objectDescription
+                            decodeURIComponent("@encodedBase64Content"), // sourcePdfBase64
+                            "", // password
+                            "http://travelorder.example.com/sipvs", // objectFormatIdentifier
+                            2, // reqLevel
+                            false, // convert
+
+                                    new Callback(function () { // callback
+                                    // Sign with ASiCE envelope
+                                    ditec.dSigXadesBpJs.sign(
+                                    "signatureId",
+                                    "http://www.w3.org/2001/04/xmlenc#sha256",
+                                    "",
+                                    new Callback(function () {
+                                        ditec.dSigXadesBpJs.getSignatureWithASiCEnvelopeBase64(
+                                            new Callback(function (ret) {
+                                            console.log(ret);
+                                            // Convert the Base64 string to a Blob
+        const base64 = ret;
+        const byteCharacters = atob(base64);
+        const byteNumbers = new Array(byteCharacters.length);
+
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'application/vnd.etsi.asic-e+zip' });
+
+        // Create a link element to trigger download
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'signed-document.asice';  // Set the desired filename
+
+        // Append link to the body and trigger download
+        document.body.appendChild(link);
+        link.click();
+
+        // Remove the link after triggering download
+        document.body.removeChild(link);
+                                        
+                                            })  
+                                        )
+                                    })
+                                );
+                           
+                        
+                    })
+                );
+            }));
+        })); *@
 
 
-    async function loadXML() {
+
+
+
+      
+    
+}
+
+// Callback constructor function
+function Callback(onSuccess) {
+    this.onSuccess = onSuccess;
+    this.onError = function(error) {
+        console.error("An error occurred:", error);
+    };
+}
+
+// Function to load XML data
+async function loadXML() {
     try {
-        const response = await fetch('/Home/XmlData');  // Correct route to HomeController action
-        const xmlText = await response.text();
-        @* console.log(xmlText); *@
-        return xmlText;
+        const response = await fetch('/Home/XmlData');
+        return await response.text();
     } catch (error) {
         console.error('Error loading XML:', error);
+        throw error;
     }
 }
 
+// Function to load XSD data
 async function loadXSD() {
     try {
-        const response = await fetch('/Home/XsdData');  // Correct route to HomeController action
-        const xsdText = await response.text();
-        @* console.log(xsdText); *@
-        return xsdText;
+        const response = await fetch('/Home/XsdData');
+        return await response.text();
     } catch (error) {
         console.error('Error loading XSD:', error);
+        throw error;
     }
 }
 
+// Function to load XSL data
 async function loadXSL() {
     try {
-        const response = await fetch('/Home/XslData');  // Correct route to HomeController action
-        const xslText = await response.text();
-        @* console.log(xslText); *@
-        return xslText;
+        const response = await fetch('/Home/XslData');
+        return await response.text();
     } catch (error) {
         console.error('Error loading XSL:', error);
+        throw error;
     }
 }
 

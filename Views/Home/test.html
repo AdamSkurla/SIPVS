@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+
+  <script>
+
+        async function executeScript() {
+
+            // Load XML, XSD, and XSL data
+            var xmlData = await loadXML();
+            var xsdData = await loadXSD();
+            var xslData = await loadXSL();
+
+            // Encode XML data to base64
+            var xmlDataBase64 = btoa(unescape(encodeURIComponent(xmlData)));
+
+
+            ditec.dSigXadesBpJs.deploy(null, new Callback(function () {
+                ditec.dSigXadesBpJs.initialize(new Callback(function () {
+                    ditec.dSigXadesBpJs.addPdfObject(
+                                "ID_2", // objectId
+                                "Podpisovany pdf subor", // objectDescription
+                                decodeURIComponent("@encodedBase64Content"), // sourcePdfBase64
+                                "", // password
+                                "http://travelorder.example.com/sipvs", // objectFormatIdentifier
+                                2, // reqLevel
+                                false, // convert
+                                new Callback(function () { // callback
+                                    // Sign with ASiCE envelope
+                                    ditec.dSigXadesBpJs.sign(
+                                        "signatureId",
+                                        "http://www.w3.org/2001/04/xmlenc#sha256",
+                                        "",
+                                        new Callback(function () {
+                              ditec.dSigXadesBpJs.getSignatureWithASiCEnvelopeBase64(
+                            new Callback(function (ret) {
+                              alert(ret);
+                            })
+                            );
+                        })
+                    );
+                })
+            );
+
+
+
+
+
+
+    }
+  </script>
+</html>

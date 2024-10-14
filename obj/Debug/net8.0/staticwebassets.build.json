@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8nuxaZ/3e+0CoJuwE4dzwKqo1PQSIHD9EPw+58BTD9o=",
+  "Hash": "5hl7WQZltZxUWlusg3DVEud1oiXD7wVc9VMMRapz0ww=",
   "Source": "SIPVS",
   "BasePath": "_content/SIPVS",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\pdffile.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\result_signed (1).asice",
+      "SourceId": "SIPVS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\",
+      "BasePath": "_content/SIPVS",
+      "RelativePath": "result_signed (1).asice",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\result_signed (1).asice"
     },
     {
       "Identity": "C:\\Users\\ja\\Documents\\GitHub\\SIPVS\\wwwroot\\result_signed.asice",
